@@ -290,9 +290,9 @@ class TestnetGRPORunner(GRPORunner):
 ```
 
 ### 11. パラメータ指定
-テストネットへの接続 →y
-math / math hard →b
-parameter →0.5
+テストネットへの接続 →y  
+math / math hard →b  
+parameter →0.5  
 ※1.5だとエラーが出るけど0.5だとうまくいくとかあるので使っているインスタンスに依存するので要確認
 
 ### 12. 認証ページへのアクセス（リダイレクト）
