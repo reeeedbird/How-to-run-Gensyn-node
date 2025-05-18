@@ -10,27 +10,27 @@
 ### 1. インスタンスにJupyter経由で接続
 vast.ai のダッシュボードから「Connect via Jupyter Notebook」をクリックし、新しいターミナルタブを開く
 
-## 2. 必要なパッケージのインストール
+### 2. 必要なパッケージのインストール
 ターミナルに下記入力
 ```
 apt update && apt install -y sudo
 sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof nano unzip iproute2
 ```
 
-## 3. 初期セットアップスクリプトの実行
+### 3. 初期セットアップスクリプトの実行
 ターミナルに下記入力
 ```
 curl -sSL https://raw.githubusercontent.com/zunxbt/installation/main/node.sh | bash
 ```
 
-## 4. screenセッションの作成（バックグラウンドで実行するため）
+### 4. screenセッションの作成（バックグラウンドで実行するため）
 ターミナルに下記入力
 ```
 screen -S gensyn
 ```
 ※画面のデタッチ方法: Ctrl + A → D
 
-## 5. Gensynのリポジトリをクローンしてセットアップ
+### 5. Gensynのリポジトリをクローンしてセットアップ
 ターミナルに下記入力
 ```
 cd $HOME && \
@@ -45,7 +45,7 @@ chmod +x gensyn.sh && \
 Jupyterのファイルエクスプローラーでローカルからのuploadが可能
 ※swarm.pemは初回発行時に紐づいたメールアドレスとペアになっていて変更不可
 
-## 6.ngrokのセットアップ
+### 6.ngrokのセットアップ
 左上のFile→Newから新しいターミナルを開いて下記コードを入力
 ```
 wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-linux-amd64.zip
@@ -60,14 +60,14 @@ ngrok config add-authtoken <ngrokのAuthtoken>
 ngrok http 3000
 ```
 
-## 7. Python仮想環境のセットアップ
+### 7. Python仮想環境のセットアップ
 元のターミナルに戻り下記入力
 ```
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-## 8. バグ対応①（リダイレクトできない問題）
+### 8. バグ対応①（リダイレクトできない問題）
 ターミナルに下記入力
 ```
 nano modal-login/app/page.tsx
@@ -190,7 +190,7 @@ export default function Home() {
 }
 ```
 
-## 9. バグ対応②（failed to connect to bootstrap peers）
+### 9. バグ対応②（failed to connect to bootstrap peers）
 ターミナルに下記入力
 ```
 nano hivemind_exp/runner/gensyn/testnet_grpo_runner.py
@@ -278,24 +278,21 @@ class TestnetGRPORunner(GRPORunner):
         )
 ```
 
-## 10. Gensynノードの起動
+### 10. Gensynノードの起動
 ターミナルに下記入力
 ```
 ./run_rl_swarm.sh
 ```
 
-## 11. パラメータ指定
+### 11. パラメータ指定
 テストネットへの接続 →y
 math / math hard →b
 parameter →0.5
 ※1.5だとエラーが出るけど0.5だとうまくいくとかあるので使っているインスタンスに依存するので要確認
 
-## 13. 認証ページへのアクセス（リダイレクト）
+### 12. 認証ページへのアクセス（リダイレクト）
 localhost:3000へのアクセスを求められたら、ngrok経由でlocalhost:3000に接続
 ※手順6で開いたターミナルに記載のURLよりアクセス
 
-## 14. hugging face連携
+### 13. hugging face連携
 Hugging faceのAPIを使うか聞かれるので使う場合はyを入力し、自身のAPIを入力
-
-以上
-
