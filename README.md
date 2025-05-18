@@ -12,20 +12,24 @@
 
 2. 必要なパッケージのインストール
    ターミナルで下記を入力
-//
+```
 apt update && apt install -y sudo
 sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof nano unzip iproute2
+```
 
 3. 初期セットアップスクリプトの実行
    ターミナルで下記を入力
-'''bash
+```
 curl -sSL https://raw.githubusercontent.com/zunxbt/installation/main/node.sh | bash
+```
 
 5. screenセッションの作成（バックグラウンドで実行するため）
+```
 screen -S gensyn
+```
 ※画面のデタッチ方法: Ctrl + A → D
 
-6. Gensynのリポジトリをクローンしてセットアップ
+7. Gensynのリポジトリをクローンしてセットアップ
 cd $HOME && \
 rm -rf rl-swarm && \
 git clone --branch v0.4.2 https://github.com/gensyn-ai/rl-swarm.git && \
