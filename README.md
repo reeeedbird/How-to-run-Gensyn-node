@@ -7,29 +7,30 @@
 ・Jupyter Notebook 経由でアクセスできること
 
 ## 🧰 セットアップ手順
-1. インスタンスにJupyter経由で接続
-   vast.ai のダッシュボードから「Connect via Jupyter Notebook」をクリックし、新しいターミナルタブを開く
+## 1. インスタンスにJupyter経由で接続
+vast.ai のダッシュボードから「Connect via Jupyter Notebook」をクリックし、新しいターミナルタブを開く
 
-2. 必要なパッケージのインストール
-   ターミナルで下記を入力
+## 2. 必要なパッケージのインストール
+ターミナルで下記を入力
 ```
 apt update && apt install -y sudo
 sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof nano unzip iproute2
 ```
 
-3. 初期セットアップスクリプトの実行
-   ターミナルで下記を入力
+## 3. 初期セットアップスクリプトの実行
+ターミナルで下記を入力
 ```
 curl -sSL https://raw.githubusercontent.com/zunxbt/installation/main/node.sh | bash
 ```
 
-5. screenセッションの作成（バックグラウンドで実行するため）
+## 4. screenセッションの作成（バックグラウンドで実行するため）
 ```
 screen -S gensyn
 ```
 ※画面のデタッチ方法: Ctrl + A → D
 
-7. Gensynのリポジトリをクローンしてセットアップ
+## 5. Gensynのリポジトリをクローンしてセットアップ
+```
 cd $HOME && \
 rm -rf rl-swarm && \
 git clone --branch v0.4.2 https://github.com/gensyn-ai/rl-swarm.git && \
@@ -37,32 +38,39 @@ cd rl-swarm && \
 touch BACKUP.md README.md UPDATE.md backup.sh gensyn.sh && \
 chmod +x gensyn.sh && \
 ./gensyn.sh
-
+```
 ※既存のswarm.pemを持っている場合は、このタイミングでswarm.pemをrl-swarm配下に格納しておく
 Jupyterのファイルエクスプローラーでローカルからのuploadが可能
 
-6.ngrokのセットアップ
-  新しいターミナルを開いて下記コードを実行
+## 6.ngrokのセットアップ
+左上のFile→Newから新しいターミナルを開いて下記コードを実行
+```
 wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-linux-amd64.zip
 unzip ngrok-stable-linux-amd64.zip
 sudo mv ngrok /usr/local/bin
-
+```
+```
 ngrok config add-authtoken <ngrokのAuthtoken>
+```
 ※Authtokenは事前にngrokに登録して入手しておきましょう
-
+```
 ngrok http 3000
+```
 
-7. Python仮想環境のセットアップ
+## 7. Python仮想環境のセットアップ
 元のターミナルに戻り下記を実行
+```
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
-8. バグ対応①
+## 8. バグ対応①
 ターミナルに下記入力
+```
 nano modal-login/app/page.tsx
-
-###始まり###
-
+```
+下記内容で上書き保存
+```
 "use client";
 import {
   useAuthModal,
@@ -177,14 +185,15 @@ export default function Home() {
     </main>
   );
 }
+```
 
-###終わり###
-
-9. バグ対応②
+## 9. バグ対応②
+ターミナルに下記入力
+```
 nano hivemind_exp/runner/gensyn/testnet_grpo_runner.py
-
-下記コードで上書き
-###始まり###
+```
+下記内容で上書き保存
+```
 import logging
 from dataclasses import dataclass
 from functools import partial
@@ -262,23 +271,25 @@ class TestnetGRPORunner(GRPORunner):
             initial_datasets_fn,
             partial(TestnetGRPOTrainer, coordinator=self.coordinator),
         )
+```
 
-
-###終わり###
-
-10. Gensynノードの起動
+## 10. Gensynノードの起動
+ターミナルに下記入力
+```
 ./run_rl_swarm.sh
+```
 
-11. 起動後
+## 11. パラメータ指定
 テストネットへの接続 →y
 math / math hard →b
 parameter →0.5
+※1.5だとエラーが出るけど0.5だとうまくいくとかあるので使っているインスタンスに依存するので要確認
 
-12. リダイレクト
+## 13. 認証ページへのアクセス（リダイレクト）
 localhost:3000へのアクセスを求められたら、ngrok経由でlocalhost:3000に接続
 ※手順6で開いたターミナルに記載のURLよりアクセス
 
-13. hugging face
+## 14. hugging face連携
 Hugging faceのAPIを使うか聞かれるので使う場合はyを入力し、自身のAPIを入力
 
 以上
