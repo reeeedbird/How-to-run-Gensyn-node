@@ -12,7 +12,7 @@
 
 2. 必要なパッケージのインストール
    ターミナルで下記を入力
-'''bash
+//
 apt update && apt install -y sudo
 sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof nano unzip iproute2
 
