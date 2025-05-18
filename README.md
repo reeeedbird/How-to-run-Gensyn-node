@@ -301,3 +301,9 @@ localhost:3000へのアクセスを求められたら、ngrok経由でlocalhost:
 
 ### 13. hugging face連携
 Hugging faceのAPIを使うか聞かれるので使う場合はyを入力し、自身のAPIを入力
+
+### 参考
+タイムアウトエラーが出た場合は下記にて対処可能
+```
+sed -i -E 's/(startup_timeout: *float *= *)[0-9.]+/\1120/' $(python3 -c "import hivemind.p2p.p2p_daemon as m; print(m.__file__)")
+```
