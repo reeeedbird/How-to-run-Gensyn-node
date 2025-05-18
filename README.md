@@ -7,7 +7,7 @@
 ・Jupyter Notebook 経由でアクセスできること  
 
 ## 🧰 セットアップ手順
-## 1. インスタンスにJupyter経由で接続
+### 1. インスタンスにJupyter経由で接続
 vast.ai のダッシュボードから「Connect via Jupyter Notebook」をクリックし、新しいターミナルタブを開く
 
 ## 2. 必要なパッケージのインストール
