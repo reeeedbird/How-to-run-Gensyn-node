@@ -3,8 +3,13 @@
 
 ## ✅ 事前準備
 ・vast.ai のアカウント  
+🔗https://cloud.vast.ai/?ref_id=228076　　
 ・起動済みのGPUインスタンス（例: RTX 4090）  
 ・Jupyter Notebook 経由でアクセスできること  
+・ngrokのauthtokenを取得していること
+🔗https://ngrok.com/
+・Hugging faceのAPIを取得していること  
+🔗https://huggingface.co/　　
 
 ## 🧰 セットアップ手順
 ### 1. インスタンスにJupyter経由で接続
