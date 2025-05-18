@@ -11,25 +11,27 @@
 vast.ai のダッシュボードから「Connect via Jupyter Notebook」をクリックし、新しいターミナルタブを開く
 
 ## 2. 必要なパッケージのインストール
-ターミナルで下記を入力
+ターミナルに下記入力
 ```
 apt update && apt install -y sudo
 sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof nano unzip iproute2
 ```
 
 ## 3. 初期セットアップスクリプトの実行
-ターミナルで下記を入力
+ターミナルに下記入力
 ```
 curl -sSL https://raw.githubusercontent.com/zunxbt/installation/main/node.sh | bash
 ```
 
 ## 4. screenセッションの作成（バックグラウンドで実行するため）
+ターミナルに下記入力
 ```
 screen -S gensyn
 ```
 ※画面のデタッチ方法: Ctrl + A → D
 
 ## 5. Gensynのリポジトリをクローンしてセットアップ
+ターミナルに下記入力
 ```
 cd $HOME && \
 rm -rf rl-swarm && \
@@ -41,9 +43,10 @@ chmod +x gensyn.sh && \
 ```
 ※既存のswarm.pemを持っている場合は、このタイミングでswarm.pemをrl-swarm配下に格納しておく
 Jupyterのファイルエクスプローラーでローカルからのuploadが可能
+※swarm.pemは初回発行時に紐づいたメールアドレスとペアになっていて変更不可
 
 ## 6.ngrokのセットアップ
-左上のFile→Newから新しいターミナルを開いて下記コードを実行
+左上のFile→Newから新しいターミナルを開いて下記コードを入力
 ```
 wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-linux-amd64.zip
 unzip ngrok-stable-linux-amd64.zip
@@ -58,13 +61,13 @@ ngrok http 3000
 ```
 
 ## 7. Python仮想環境のセットアップ
-元のターミナルに戻り下記を実行
+元のターミナルに戻り下記入力
 ```
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-## 8. バグ対応①
+## 8. バグ対応①（リダイレクトできない問題）
 ターミナルに下記入力
 ```
 nano modal-login/app/page.tsx
@@ -187,12 +190,14 @@ export default function Home() {
 }
 ```
 
-## 9. バグ対応②
+## 9. バグ対応②（failed to connect to bootstrap peers）
 ターミナルに下記入力
 ```
 nano hivemind_exp/runner/gensyn/testnet_grpo_runner.py
 ```
 下記内容で上書き保存
+ターミナルに下記入力
+※/ip4/xxxx.xxx.xxx.xxxの部分は各自異なるので要確認
 ```
 import logging
 from dataclasses import dataclass
@@ -232,7 +237,7 @@ class TestnetGRPORunner(GRPORunner):
         logger.info(f"Bootnodes from chain: {peers}")
 
         # Filter out dead peers (optional)
-        alive_peers = [p for p in peers if not p.startswith('/ip4/38.101.215.15')]
+        alive_peers = [p for p in peers if not p.startswith('/ip4/xxxx.xxx.xxx.xxx')]
         return alive_peers if alive_peers else []
 
     def __init__(self, coordinator: SwarmCoordinator) -> None:
