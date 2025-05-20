@@ -47,7 +47,7 @@ chmod +x gensyn.sh && \
 ./gensyn.sh
 ```
 ※既存のswarm.pemを持っている場合は、このタイミングでswarm.pemをrl-swarm配下に格納しておく
-Jupyterのファイルエクスプローラーでローカルからのuploadが可能
+Jupyterのファイルエクスプローラーでローカルからのuploadが可能  
 ※swarm.pemは初回発行時に紐づいたメールアドレスとペアになっていて変更不可
 
 ### 6.ngrokのセットアップ
@@ -296,7 +296,7 @@ parameter →0.5
 ※1.5だとエラーが出るけど0.5だとうまくいくとかあるので使っているインスタンスに依存するので要確認
 
 ### 12. 認証ページへのアクセス（リダイレクト）
-localhost:3000へのアクセスを求められたら、ngrok経由でlocalhost:3000に接続
+localhost:3000へのアクセスを求められたら、ngrok経由でlocalhost:3000に接続  
 ※手順6で開いたターミナルに記載のURLよりアクセス
 
 ### 13. hugging face連携
